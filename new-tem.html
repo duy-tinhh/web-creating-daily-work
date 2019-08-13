@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Thêm Các Công Việc</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<p>Thêm Công Việc: </p>
+	<input type="text" name="new-item" id="input">
+	<button id="button">Add</button>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		var button = document.getElementById('button');
+		var input = document.getElementById('input');
+		var url = 'http://localhost:3000/http';
+		button.addEventListener('click', addItems);
+		function addItems(){
+			var value = {content: input.value};
+			console.log(value);
+			axios.post(url, value).then(function(res){ console.log(res)});
+			input.value = '';
+			window.location.href = "http://localhost:9080/index.html";
+		}
+	</script>
+</body>
+</html>

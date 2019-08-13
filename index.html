@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTTP Request</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h2>Công Việc Hằng Ngày</h2>
+	<!-- <input type="text" name="input" id="input">
+	<button id="button">Submit</button> -->
+	<a href="./new-tem.html">Thêm Công Việc</a>
+	<ul id="list-item"></ul>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		var url = 'http://localhost:3000/http';
+		axios.get(url)
+		.then(function(responsive){
+			var values = responsive.data;
+			render(values);
+		});
+		// button.addEventListener('click', addItems);
+		// var input = document.getElementById('input');
+		 var listItem = document.getElementById('list-item');
+		 var x = document.getElementsByClassName("hihi");
+		listItem.addEventListener('click', deleteItems);
+		listItem.addEventListener('click', editItem);
+		// function addItems(){
+		// 	var value = {content: input.value};
+		// 	console.log(value);
+		// 	axios.post(url, value).then(function(res){ console.log(res)});
+		// 	input.value = '';
+		// }
+		function editItem(event){
+			var id =event.target.dataset.id2;
+			window.location.href ="./update-items.html#"+ id;
+		}
+		function deleteItems(event){
+			var del = event.target.dataset.id;
+			axios.delete('http://localhost:3000/http/' + del);
+		}
+		function render(items){
+			var values = items.map(function(value, index){
+				return '<li class="hihi">' + value.content + ' <button data-id="'+ value.id + '">Delete</button><br><button data-id2="'+
+				index + '">Edit</button></li>'; 
+			});
+			listItem.innerHTML = values.join('');
+			console.log(values);
+		}
+		//render();
+	</script>
+</body>
+</html>

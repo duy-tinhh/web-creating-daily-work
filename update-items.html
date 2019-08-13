@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sửa Công Việc</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<p>Update Lại Công Việc</p>
+	<input type="text" name="" id="input">
+	<button id="button">Save</button>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		var id = window.location.hash;
+		var input = document.getElementById('input');
+		var button = document.getElementById('button');
+		button.addEventListener('click', saveItem);
+		var tach = id.split('');
+		var url = 'http://localhost:3000/http/';
+		axios.get(url+tach[1]).then(function(res){
+			input.value = res.data.content;
+		});
+		function saveItem(){
+			axios.patch((url+tach[1]), { content: input.value});
+			window.location.href = "/";
+		}
+
+	</script>
+</body>
+</html>
