@@ -17,8 +17,8 @@
 		function addItems(){
 			var value = {content: input.value};
 			console.log(value);
-			axios.post(url, value).then(function(res){ console.log(res)});
-			input.value = '';
+			axios.post(url, value);
+			//input.value = '';
 			window.location.href = "http://localhost:9080/index.html";
 		}
 	</script>

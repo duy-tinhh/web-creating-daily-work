@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
 	<title>Sửa Công Việc</title>
 	<meta charset="utf-8">
@@ -14,14 +14,15 @@
 		var input = document.getElementById('input');
 		var button = document.getElementById('button');
 		button.addEventListener('click', saveItem);
-		var tach = id.split('');
+		var urlIndex = id.slice(1);
+		console.log(urlIndex);
 		var url = 'http://localhost:3000/http/';
-		axios.get(url+tach[1]).then(function(res){
+		axios.get(url+urlIndex).then(function(res){
 			input.value = res.data.content;
 		});
 		function saveItem(){
-			axios.patch((url+tach[1]), { content: input.value});
-			window.location.href = "/";
+			axios.patch((url+urlIndex), { content: input.value});
+			 window.location.href = "/";
 		}
 
 	</script>
